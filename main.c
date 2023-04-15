@@ -9,18 +9,19 @@ int elMenorDeTres(int, int, int);
 int sumaEnteros(int);
 void tablaMultiplicar(int);
 int calculoSuma(int, int);
-int calculoResta(int, int);
-int calculoDivision(int, int);
+float calculoResta(int, int);
+float calculoDivision(int, int);
 int calculoMultiplicacion(int, int);
 void calculadora(int, int);
 int invertirNumero(int *);
-void cargaValores(int *, int *);
+void cargaValores(int *, int*);
 
 int main()
 {
-    int opcion, num1, num2, num3;
-
+    srand(time(NULL));
+    int opcion, a, b, c;
     menu(&opcion);
+
     switch(opcion){
     case 1:
         printf("1. Desarrollar una funcion que devuelva un valor RANDOM en el rango de 0 a 100.\n");
@@ -28,45 +29,44 @@ int main()
         break;
     case 2:
         printf("2. Diseñe una funcion que reciba 3 numeros enteros y muestre el mayor y el menor.");
-        num1 = numRandom();
-        num2 = numRandom();
-        num3 = numRandom();
-        printf("\n\nNumeros random: %d - %d - %d", num1, num2, num3);
-        printf("\n\nEl mayor de los tres: %d\n", elMayorDeTres(num1, num2, num3));
-        printf("\nEl menor de los tres: %d\n", elMenorDeTres(num1, num2, num3));
+        a = numRandom();
+        b = numRandom();
+        c = numRandom();
+        printf("\n\nNumeros random: %d - %d - %d", a, b, c);
+        printf("\n\nEl mayor de los tres: %d\n", elMayorDeTres(a, b, c));
+        printf("\nEl menor de los tres: %d\n", elMenorDeTres(a, b, c));
         break;
     case 3:
         printf("3. Diseñe una funcion que reciba un numero entero N y realice la suma de los numeros enteros positivos menores que N y lo retorne. N es un dato ingresado por el usuario en el main.");
         printf("\n\nIngrese un numero natural: ");
-        scanf("%d", &num1);
-        printf("\n\nEnteros sumados : %d\n\n",sumaEnteros(num1));
+        scanf("%d", &a);
+        printf("\n\nEnteros sumados : %d\n\n",sumaEnteros(a));
         break;
     case 4:
         printf("4. Desarrollar una funcion que muestre la tabla de multiplicar de un número entero recibido por parámetro.");
         printf("\n\nIngrese un numero: ");
-        scanf("%d", &num1);
-        tablaMultiplicar(num1);
-        printf("\n");
+        scanf("%d", &a);
+        tablaMultiplicar(a);
         break;
     case 5:
         printf("5. Realice una pequeña calculadora, utilizando funciones (una funcion de suma, una de multiplicacion, una de resta, una de division…)");
         printf("\n\nNumero 1: ");
-        scanf("%d", &num1);
+        scanf("%d", &a);
         printf("\nNumero 2: ");
-        scanf("%d", &num2);
+        scanf("%d", &b);
         system("cls");
-        calculadora(num1, num2);
+        calculadora(a, b);
         break;
     case 6:
         printf("6. Realizar una funcion que reciba un numero positivo entero por parametro por referencia, y cambie su signo a negativo.");
-        num1=numRandom();
-        printf("\n\nNumero positivo: %d", num1);
-        printf("\nNumero negativo: %d", invertirNumero(&num1));
+        a=numRandom();
+        printf("\n\nNumero positivo: %d", a);
+        printf("\nNumero negativo: %d", invertirNumero(&a));
         break;
     case 7:
         printf("7. Realizar una funcion que reciba dos numeros enteros por parametro por referencia y cargue sus valores el usuario dentro de la funcion.");
-        cargaValores(&num1, &num1);
-        printf("Valores: %d y %d", num1, num2);
+        cargaValores(&a, &b);
+        printf("\nValores: %d y %d\n\n", a, b);
         break;
     }
 
@@ -89,20 +89,17 @@ void menu(int *opcion)
     printf("*********************************************\n");
     printf("* 6 * Invertir numero positivo              *\n");
     printf("*********************************************\n");
-    printf("* 7 * Enteros por Parametro->Referencia     *\n");
+    printf("* 7 * Enteros por Parametro-Referencia      *\n");
     printf("*********************************************\n");
     printf("*********************************************\n");
     printf("      Seleccionar ejercicio: ");
     scanf("%d", opcion);
     system("cls");
 }
-
 int numRandom()
 {
-    srand(time(NULL));
     return rand() % 101;
 }
-
 int elMayorDeTres(int a, int b, int c)
 {
     int numero;
@@ -115,7 +112,6 @@ int elMayorDeTres(int a, int b, int c)
   }
   return numero;
 }
-
 int elMenorDeTres(int a, int b, int c)
 {
     int numero;
@@ -128,12 +124,10 @@ int elMenorDeTres(int a, int b, int c)
   }
   return numero;
 }
-
 int sumaEnteros(int n)
 {
     return (n*(n+1))/2;
 }
-
 void tablaMultiplicar(int a)
 {
     int i;
@@ -141,35 +135,25 @@ void tablaMultiplicar(int a)
         printf("\n%d * %d = %d", a, i, a*i);
     }
 }
-
 int calculoSuma(int a, int b)
 {
     return a+b;
 }
-
-int calculoResta(int a, int b)
+float calculoResta(int a, int b)
 {
     return a-b;
 }
-
-int calculoDivision(int a, int b)
+float calculoDivision(int a, int b)
 {
-    if(b==0){
-        printf("\nError: Imposible dividir por cero.\n\n");
-        return NULL;
-    } else {
-        return a/b;
-    }
+    return (float)a/b;
 }
-
 int calculoMultiplicacion(int a, int b)
 {
     return a*b;
 }
-
 void calculadora(int a, int b)
 {
-    int operacion=0, c;
+    int operacion=0;
     printf("Seleccione una operacion:\n1.Suma\n2.Resta\n3.Multiplicacion\n4.Division\n\nOperacion: ");
     scanf("%d", &operacion);
     switch(operacion){
@@ -177,25 +161,24 @@ void calculadora(int a, int b)
         printf("\n%d + %d = %d\n\n", a, b, calculoSuma(a, b));
         break;
     case 2:
-        printf("\n%d - %d = %d\n\n", a, b, calculoResta(a, b));
+        printf("\n%d - %d = %.f\n\n", a, b, calculoResta(a, b));
         break;
     case 3:
         printf("\n%d * %d = %d\n\n", a, b, calculoMultiplicacion(a, b));
         break;
     case 4:
-        c = calculoDivision(a, b);
-        if(c!=0){
-            printf("\n%d / %d = %d\n\n", a, b, c);
+        if(b!=0){
+            printf("\n%d / %d = %.2f\n\n", a, b, calculoDivision(a, b));
+        } else {
+            printf("\nNo se puede dividir por 0.\n");
         }
         break;
     }
 }
-
 int invertirNumero(int *a)
 {
     return -*a;
 }
-
 void cargaValores(int *a, int *b)
 {
     printf("\n\nCargar primer valor: ");
