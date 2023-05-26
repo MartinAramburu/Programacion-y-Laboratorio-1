@@ -11,7 +11,7 @@ typedef struct {
 
 // --- Prototipado ---
 int cargarDatosAlumnos(stAlumno alumno[], int dimension);
-int cargarNuevoDatoAlumnos(stAlumno alumno[], int *validos, int dimension);
+int agregarAlumnos(stAlumno alumno[], int *validos, int dimension);
 // ---
 void mostrarDatosAlumnos(stAlumno alumno[], int validos);
 void mostrarDatosPorMatricula(stAlumno alumno[], int validos, int matricula);
@@ -60,7 +60,7 @@ int main()
         switch(opcion){
         case 1:
             system("cls");
-            cargarNuevoDatoAlumnos(alumno, &validos, 50);
+            agregarAlumnos(alumno, &validos, 50);
             break;
         case 2:
             mostrarDatosAlumnos(alumno, validos);
@@ -114,7 +114,8 @@ int main()
 // --- Funciones ---
 int cargarDatosAlumnos(stAlumno alumno[], int dimension)
 {
-    int i = 0;
+    int i = 0,
+        g = 0;
     char control = '\0';
 
     while(i < dimension && control != 27){
@@ -124,8 +125,17 @@ int cargarDatosAlumnos(stAlumno alumno[], int dimension)
         printf("\nNombre: ");
         fflush(stdin);
         gets(&alumno[i].nombre);
-        printf("\nGenero: ");
-        scanf("%c", &alumno[i].genero);
+        while(g==0){
+            printf("\nGenero: ");
+            scanf("%c", &alumno[i].genero);
+            if(alumno[i].genero == 'm' || alumno[i].genero == 'f' || alumno[i].genero == 'o'){
+                g++;
+            } else {
+                system("cls");
+                printf("\nPor favor indique genero: m, f, o\n");
+            }
+        }
+        g = 0;
         printf("\n\n[ENTER PARA CONTINUAR] [ESC PARA SALIR]");
         fflush(stdin);
         control = getch();
@@ -134,9 +144,10 @@ int cargarDatosAlumnos(stAlumno alumno[], int dimension)
     }
     return i;
 }
-int cargarNuevoDatoAlumnos(stAlumno alumno[], int *validos, int dimension)
+int agregarAlumnos(stAlumno alumno[], int *validos, int dimension)
 {
-    int i = *validos;
+    int i = *validos,
+        g = 0;
     char control = '\0';
 
     while(i < dimension && control !=27){
@@ -146,8 +157,17 @@ int cargarNuevoDatoAlumnos(stAlumno alumno[], int *validos, int dimension)
         printf("\nNombre: ");
         fflush(stdin);
         gets(&alumno[i].nombre);
-        printf("\nGenero: ");
-        scanf("%c", &alumno[i].genero);
+        while(g==0){
+            printf("\nGenero: ");
+            scanf("%c", &alumno[i].genero);
+            if(alumno[i].genero == 'm' || alumno[i].genero == 'f' || alumno[i].genero == 'o'){
+                g++;
+            } else {
+                system("cls");
+                printf("\nPor favor indique genero: m, f, o\n");
+            }
+        }
+        g = 0;
         printf("\n\n[ENTER PARA CONTINUAR] [ESC PARA SALIR]");
         fflush(stdin);
         control = getch();
@@ -168,7 +188,7 @@ void mostrarDatosAlumnos(stAlumno alumno[], int validos)
         system("cls");
         printf("\nMatricula: %d", alumno[i].matricula);
         printf("\nNombre: %s", alumno[i].nombre);
-        printf("\nGenero (m, f, o): %c", alumno[i].genero);
+        printf("\nGenero: %c", alumno[i].genero);
         i++;
         printf("\n\n[ENTER PARA CONTINUAR] [ESC PARA SALIR]");
         fflush(stdin);
@@ -281,15 +301,17 @@ void presentacion(char *control)
 void menu(int *opcion)
 {
     printf("\n**********************************************************\n");
-    printf("\n***************            MENU            ***************\n");
+    printf("\n***************            MENU           ****************\n");
     printf("\n**********************************************************\n");
-    printf("\n*************** 1 * Nueva carga de alumnos ***************\n");
-    printf("\n*************** 2 * Mostrar todos los alumnos ************\n");
-    printf("\n*************** 3 * Buscar por matricula      ************\n");
-    printf("\n*************** 4 * Mostrar por genero        ************\n");
-    printf("\n*************** 5 * Ordenar alumnos por matricula ********\n");
-    printf("\n*************** 6 * Ordenar alumnos por nombre ***********\n");
-    printf("\n*************** 7 * Contar alumnos por genero ************\n");
-    printf("\n***************     Seleccione una opcion: ***************\n");
+    printf("\n*********** 1 * Agregar alumnos               ************\n");
+    printf("\n*********** 2 * Mostrar todos los alumnos     ************\n");
+    printf("\n*********** 3 * Buscar por matricula          ************\n");
+    printf("\n*********** 4 * Mostrar por genero            ************\n");
+    printf("\n*********** 5 * Ordenar alumnos por matricula ************\n");
+    printf("\n*********** 6 * Ordenar alumnos por nombre    ************\n");
+    printf("\n*********** 7 * Contar alumnos por genero     ************\n");
+    printf("\n**********************************************************\n");
+    printf("\n***********     Seleccione una opcion         ************\n");
+    printf("\n**********************************************************\n");
     scanf("%d", opcion);
 }
