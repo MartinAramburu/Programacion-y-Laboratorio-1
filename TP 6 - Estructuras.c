@@ -151,6 +151,7 @@ int cargarNuevoDatoAlumnos(stAlumno alumno[], int *validos, int dimension)
         printf("\n\n[ENTER PARA CONTINUAR] [ESC PARA SALIR]");
         fflush(stdin);
         control = getch();
+        system("cls");
         i++;
     }
     *validos = i;
