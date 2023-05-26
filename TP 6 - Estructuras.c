@@ -51,7 +51,6 @@ int main()
     printf("\n**********************************************************\n");
     printf("\n            ");system("pause");system("cls");
     validos = cargarDatosAlumnos(alumno, 50);
-    system("cls");
 
     while(control != 27){
         system("cls");
