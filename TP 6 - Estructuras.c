@@ -74,10 +74,15 @@ int main()
             break;
         case 4:
             system("cls");
-            printf("Genero :");
+            printf("Genero (m, f, o):");
             fflush(stdin);
             scanf("%c", &genero);
-            mostrarDatosPorGenero(alumno, validos, genero);
+            if(genero == 'm' || genero == 'f' || genero == 'o'){
+                mostrarDatosPorGenero(alumno, validos, genero);
+            } else {
+                system("cls");
+                printf("\nGenero inexistente.\n");
+            }
             printf("\n\n");
             system("pause");
             break;
