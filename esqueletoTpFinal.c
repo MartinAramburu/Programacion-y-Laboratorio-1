@@ -42,15 +42,8 @@ typedef struct {
     int leido;
 } stMensajeria;
 
-// Variables globales
-stUsuario usuarios[MAX_USUARIOS];
-stContenido contenidos[MAX_CONTENIDOS];
-stMensajeria mensajes[MAX_MENSAJES];
-int cantidadUsuarios = 0;
-int cantidadContenidos = 0;
-int cantidadMensajes = 0;
+// Funciones de utilidad
 
-// Funciones de utilidad:
 // Busca un usuario por Username. Si lo encuentra devuelve su posicion, si no lo encuentra devuelve -1.
 int buscarUsuarioPorUsername(const char *username)
 {
@@ -171,6 +164,15 @@ void guardarMensajesEnArchivo() {
 
 // Función principal - Main
 int main() {
+    
+    // Variables
+    stUsuario usuarios[MAX_USUARIOS];
+    stContenido contenidos[MAX_CONTENIDOS];
+    stMensajeria mensajes[MAX_MENSAJES];
+    int cantidadUsuarios = 0;
+    int cantidadContenidos = 0;
+    int cantidadMensajes = 0;
+    
     // Cargar datos desde archivos
     cargarUsuariosDesdeArchivo();
     cargarContenidosDesdeArchivo();
