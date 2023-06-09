@@ -50,23 +50,29 @@ int cantidadUsuarios = 0;
 int cantidadContenidos = 0;
 int cantidadMensajes = 0;
 
-// Funciones de utilidad
-int buscarUsuarioPorUsername(const char *username) {
+// Funciones de utilidad:
+// Busca un usuario por Username. Si lo encuentra devuelve su posicion, si no lo encuentra devuelve -1.
+int buscarUsuarioPorUsername(const char *username)
+{
+    int flag = -1;
     for (int i = 0; i < cantidadUsuarios; i++) {
         if (strcmp(usuarios[i].userName, username) == 0) {
-            return i;  // Índice del usuario encontrado
+            flag = i;
         }
     }
-    return -1;  // Usuario no encontrado
+    return flag;
 }
 
-int buscarContenidoPorId(int idContenido) {
-    for (int i = 0; i < cantidadContenidos; i++) {
+// Busca contenido por Id. Si lo encuentra devuelve su posicion, si no lo encuentra devuelve -1.
+int buscarContenidoPorId(int idContenido)
+{
+    int flag = -1;
+    for (int i = 0; i < cantidadContenidos && flag == -1; i++) {
         if (contenidos[i].idContenido == idContenido) {
-            return i;  // Índice del contenido encontrado
+            flag = i;
         }
     }
-    return -1;  // Contenido no encontrado
+    return flag;
 }
 
 // Funciones de Usuarios
